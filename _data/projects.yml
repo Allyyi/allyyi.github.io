@@ -1,0 +1,47 @@
+- name: Hacking the Kidney  # Project name, also used as heading
+  id: p1 # Project id, must be unique amongst the projects
+  img_src: /assets/img/project_img/kaggle_segementation_img.png # Optional image
+  description_less: A Kaggle competition about glomeruli segmentation in kidney image. # Description shown at all times, text only
+  description_more: > # Description shown only when the project card is expanded, HTML only
+    <p>Generated high-quality dataset from raw image by sampling in glomeruli gathering part of kidney;
+    Implemented glomeruli segmentation model in U-net architecture using PyTorch; Replaced encoder with EfficientNet-B4 for better feature extraction; 
+    Ranked 15% on public leaderboard.</p>
+  action_buttons: > # Action buttons for project, HTML only
+    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
+  tags: [kaggle, Pytorch] # A list of tags
+
+- name: Real Time Maked Face detection 
+  id: p2
+  img_src: 
+  description_less: Masked face Detection based on YOLOv5
+  description_more: >
+    <p>The original dataset sufferes severe imbalanced problem. To solve this, I applied upsampling to minor class(incorrectly masked), downsampling to major class(masked) 
+    and use MFC-Net to generate more data in no-mask class from celebrity-face dataset. Train YOLOv5s model. </p>
+  action_buttons: >
+    <a href="https://github.com/ritijjain/pudhina-fresh" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
+    <a href="https://ritijjain.com/2020/09/12/pudhina-fresh.html" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-align-right"></i> &nbsp Blog Post</a>
+  tags: [object-detection, open-source]
+
+- name: Project Two
+  id: p2
+  img_src: 
+  description_less: Refer to docs to learn how to add your own projects.
+  description_more: >
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  action_buttons: >
+    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-link"></i> &nbsp View Project</a>
+    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
+    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-align-right"></i> &nbsp Blog Post</a>
+  tags: [tag3, docs]
+
+- name: Project Three
+  id: p3
+  img_src: /assets/img/weatherpie-page.png
+  description_less: Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam.
+  description_more: >
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  action_buttons: >
+    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-link"></i> &nbsp View Project</a>
+    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
+    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-align-right"></i> &nbsp Blog Post</a>
+  tags: [tag2, tag4]
