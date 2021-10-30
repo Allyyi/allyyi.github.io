@@ -2,7 +2,7 @@
 # Required front matter
 layout: post # Posts should use the post layout
 title: Transformer in Computer Vision # Post title
-date: 2021-05-10 # Publish date in YYYY-MM-DD format
+date: 2021-07-10 # Publish date in YYYY-MM-DD format
 
 # Recommended front matter
 tags: CV tag4 # A list of tags
@@ -19,7 +19,7 @@ listed: true # false if this post must NOT be included on the posts page, sitema
 index: true # When false, <meta name="robots" content="noindex"> is added to the page, default is true
 ---
 
-The breakthroughs from Transformer network in Natraul Language Processing has sparked great interest in Computer Vision to adapt these model to muti-modal learning tasks. The attention-based transformer module has shaken the dominating position of convolution operation.
+If you have to pick up a trendy word in 2021's in the world of computer vision, what would you choose? My answer is vision transformer. The transformer archietecture has achieved state of the art in many NLP tasks and inspired many researchers to adopt it in computer vision. Nowadays, the attention-based transformer module is shaking the dominating position of convolution. In this post, I will share some of  my understanding in transformer, especially its application in computer vision.
 
 # What is Transformer
 
@@ -44,7 +44,13 @@ Masked multi-head attention is because the output in position i can only depends
 
 The position-wise feed-forward network contains two linear function and a ReLU activition in between.
 
-$$FFN(x)=max(0,xW_1+b_1)W_2+b_2$$
+$$\mathrm{FFN}(x)=\max(0,xW_1+b_1)W_2+b_2$$
+
+
+
+
+
+
 
 Sefl-attention based Tranformer models generally operate in two-stage learning mechanism.
 
