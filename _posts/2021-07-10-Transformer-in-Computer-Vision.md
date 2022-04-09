@@ -48,10 +48,6 @@ $$\mathrm{FFN}(x)=\max(0,xW_1+b_1)W_2+b_2$$
 
 
 
-
-
-
-
 Sefl-attention based Tranformer models generally operate in two-stage learning mechanism.
 
 - Pre-training on a large-scale dataset in supervised or unsupervised manner.
