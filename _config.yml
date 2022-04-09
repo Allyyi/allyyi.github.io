@@ -2,7 +2,7 @@ title: Xin's Chamber # Shown in header on pages with full_logo: true
 short_logo: Xin's Chamber # Shown in header on all pages by default unless full_logo: true is set
 description: > # The description for your site
   A minimal yet feature-rich Jekyll theme made for personal websites and blogs.
-url: "https://coolcat-xin.github.io/yixin.github.io/" # Site base URL
+url: "https://Allyyi.github.io/yixin.github.io/" # Site base URL
 author:
   name: Xin Yi
   github: ritijjain/pudhina-fresh # GitHub username, used for GitHub icon on the top right
