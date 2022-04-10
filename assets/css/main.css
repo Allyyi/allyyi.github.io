@@ -389,6 +389,10 @@ body {
   }
 }
 
+.modal-dialog {
+  width: 1000px;
+}
+
 .card .btn {
   position: relative;
   z-index: 2;

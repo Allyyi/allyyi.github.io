@@ -1,47 +1,118 @@
-- name: Hacking the Kidney  # Project name, also used as heading
+- name: Hacking the Kidney # Project name, also used as heading
   id: p1 # Project id, must be unique amongst the projects
   img_src: /assets/img/project_img/kaggle_segementation_img.png # Optional image
   description_less: A Kaggle competition about glomeruli segmentation in kidney image. # Description shown at all times, text only
-  description_more: > # Description shown only when the project card is expanded, HTML only
-    <p>Generated high-quality dataset from raw image by sampling in glomeruli gathering part of kidney;
-    Implemented glomeruli segmentation model in U-net architecture using PyTorch; Replaced encoder with EfficientNet-B4 for better feature extraction; 
-    Ranked 15% on public leaderboard.</p>
+  description_more: >
+    <p>
+      <ul>
+        <li>Data Preprocessing
+            <ul> 
+              <li> First, created segmentation masks from RLE files.</li>
+              <li> Then, decomposed large TIFF files of kidney images.
+                  <ul>
+                    <li> Method one: Splitted large TIFF files into small patches by using sliding window sized 256*256 with 32px overlapping. However, the generated dataset was insufficient in glomeruli patches for segmentation</li>
+                    <li> Method two: Generated class region masks from segmentation masks. Created probability density function for efficient sampling. Based on the fact that glomeruli are mainly found in the cortex, the sampling weights for cortex, medulla and others are set to be 0.6, 0.35 and 0.05.</li>
+                  </ul>
+              </li>
+              <li> Augmented data using one of the methods in random brightness contrast, rotate and noise with the probability of 0.3. The training and validation proportion is 5:1.</li>
+            </ul>
+        </li>
+        <li>Model training and Optimization
+            <ul>
+              <li> Neural network architecture: U-net based architecture with Efficient Net b4 as encoder to extract features.</li>
+              <li> Cross Entropy worked as loss function and Rectified Adam played as optimizer. IoU and Dice f1 are selected as metrics.</li>
+              <li> The training took 20 epochs with hyperparameter grid search and the network was fine-tuned on pretrained weights.</li>
+            </ul>
+        </li>
+        <li>Conclusion
+            <ul>
+              <li> Feature engineering is important. Given the same network architecture, the prediction accuracy increased by 5% in method two compared with method one. Apart from that, the training converged fast due to the sampling strategy.</li>
+              <li> The U-net architecture is powerful in biomedical segmentation tasks. The final score ranked in the top 15% on the public leaderboard.</li>
+            </ul>
+        </li>
+      </ul>
+    </p>
   action_buttons: > # Action buttons for project, HTML only
     <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
-  tags: [kaggle, Pytorch] # A list of tags
+  tags: [kaggle, PyTorch] # A list of tags
 
-- name: Real Time Maked Face detection 
+- name: Real Time Maked Face detection
   id: p2
-  img_src: 
+  img_src: /assets/img/project_img/howfrworks.jpg
   description_less: Masked face Detection based on YOLOv5
   description_more: >
-    <p>The original dataset sufferes severe imbalanced problem. To solve this, I applied upsampling to minor class(incorrectly masked), downsampling to major class(masked) 
-    and use MFC-Net to generate more data in no-mask class from celebrity-face dataset. Train YOLOv5s model. </p>
+    <p>
+      <ul>
+        <li> Data Collection and Preprocessing
+          <ul>
+            <li>Data analysis: The original dataset suffers a severe imbalance issue that there are only 121 instances for incorrectly-weared class and 716 instances for no-mask class while 3184 instances for masked class.</li>
+            <li>Data balancing: Cropped incorrectly masked instances and applied data augmentation including flip, 
+                rotation, scale and translation to enlarge instances of this class. Used images with person label from 
+                COCO dataset and fed them to MTCNN face detection model to generate boundary boxes for no-mask 
+                faces. The final proportion of each class is incorrect:correct:no≈1:5:5.</li>
+            <li>Converted annotations to darknet format.</li>
+          </ul>
+        </li>
+        <li> Model and Training
+          <ul>
+            <li>Used YOLOv5s model to detect face boundaries and classify instances considering computational cost
+                and inference speed.</li>
+            <li>Transfer learning from official COCO pretrained weights with backbone layers frozen.</li>
+            <li>Shuffled the data and applied 5-fold cross validation when training 100 epochs with the Adam optimizer</li>
+          </ul>
+        </li>
+        <li> Results
+          <ul>
+            <li>Mask prediction model achieved 0.85 on mean average precision calculated at IoU threshold 0.5.</li>
+            <li>The incorrectly masked class has lower confidence for insufficient data. Further imporvement can be done by re-sampling the dataset or re-weighting the loss function.</li>
+          </ul>
+        </li>
+      <ul>
+    </p>
   action_buttons: >
-    <a href="https://github.com/ritijjain/pudhina-fresh" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
-    <a href="https://ritijjain.com/2020/09/12/pudhina-fresh.html" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-align-right"></i> &nbsp Blog Post</a>
-  tags: [object-detection, open-source]
+    <a href="#"" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
+  tags: [object-detection, PyTorch]
 
-- name: Project Two
-  id: p2
-  img_src: 
-  description_less: Refer to docs to learn how to add your own projects.
-  description_more: >
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  action_buttons: >
-    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-link"></i> &nbsp View Project</a>
-    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
-    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-align-right"></i> &nbsp Blog Post</a>
-  tags: [tag3, docs]
-
-- name: Project Three
+- name: SAT Solver Optimization Based on DPLL Algorithm
   id: p3
-  img_src: /assets/img/weatherpie-page.png
-  description_less: Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam.
+  img_src: /assets/img/project_img/dpll.png
+  description_less: Implement a vanilla SAT solver then optimize it with multiple strategy. Build a binary puzzle game with optimized version SAT solver.
   description_more: >
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>
+      <ul>
+        <li>Implemented basic SAT solver with DPLL algorithm; Optimized solver with conflict-driven clause 
+            learning to reduce searching space, dynamic variable ordering to resolve conflicts earlier and two 
+            watched literals method for non-chronological backtracking.</li>
+        <li>Generated binary puzzles of unique solution and translated game constraints into CNF formula; Applied 
+            optimized solver in puzzle solution.</li>
+        <li>Reduced time cost by 83.2% for satisfiable problems and 71.6% for unsatisfiable problems on average
+            compared to the original algorithm.</li>
+      </ul>
+    </p>
   action_buttons: >
-    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-link"></i> &nbsp View Project</a>
     <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
-    <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-align-right"></i> &nbsp Blog Post</a>
-  tags: [tag2, tag4]
+  tags: [course-project, C/C++]
+
+- name: Gym Appointment and Management Wechat App
+  id: p4
+  img_src: /assets/img/project_img/gymapp.png
+  description_less: Support gym owners to show their brand image; Provide a platform for gym members to book private training and group training lessons.
+  description_more: >
+    <p> Design and develop the backend database to support member management for gym owners and booking
+        system for members. Implement interaction between front-end and back-end.
+    </p>
+  action_buttons: >
+    <a href="http://muqiualron.gitee.io/big-orange/" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-link"></i> &nbsp View Project</a>
+    <a href="https://gitee.com/MuqiuAlron/big-orange" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
+  tags: [html/css/javascript, cloud-developing]
+# - name: Project Three
+#   id: p4
+#   img_src: /assets/img/weatherpie-page.png
+#   description_less: Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam.
+#   description_more: >
+#     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+#   action_buttons: >
+#     <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-link"></i> &nbsp View Project</a>
+#     <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-code-branch"></i> &nbsp Repository</a>
+#     <a href="#" target="_blank" class="btn btn-dark mb-1"><i class="fas fa-align-right"></i> &nbsp Blog Post</a>
+#   tags: [tag2, tag4]

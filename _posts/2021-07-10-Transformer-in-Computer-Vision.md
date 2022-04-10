@@ -134,9 +134,3 @@ So, how can we counteract the effect of attention collapse?
   where $$\Theta \in R^{H\times H}$$ and end-to-end learnable. From the following plot, we can find that the feature map similarity between blocks drops signicantly in deeper blocks. This trick is very flexible and the performance gains significantly for ViT-32B.
 
   <center><img src="../../../assets/img/img_for_transformer/image-20211121193024993.png" alt="image-20211121193024993" style="zoom: 60%;" /></center>
-
-## Towards lighter & data-efficient
-
-### DeiT
-
-In the paper [*Training data-efficient image transformers & distillation through attention*](https://arxiv.org/pdf/2012.12877v2.pdf), the author 
